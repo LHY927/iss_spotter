@@ -1,19 +1,13 @@
 // index.js
-const { fetchMyIP } = require('./iss');
 
-fetchMyIP((error, ip) => {
-  // inside the request callback ...
-  // error can be set if invalid domain, user is offline, etc.
+// The code below is temporary and can be commented out.
+const { fetchCoordsByIP } = require('./iss');
+
+fetchCoordsByIP('162.245.144.188', (error, coordinates) => {
   if (error) {
-    callback(error, null);
-    return;
-  }
-  // if non-200 status, assume server error
-  if (response.statusCode !== 200) {
-    const msg = `Status Code ${response.statusCode} when fetching IP. Response: ${body}`;
-    callback(Error(msg), null);
+    console.log("It didn't work!" , error);
     return;
   }
 
-  // if we get here, all's well and we got the data
+  console.log('It worked! Returned coordinates:' , coordinates);
 });
